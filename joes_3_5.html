@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joe's Hotdogs</title>
+</head>
+<body>
+
+    <script>
+        // Part 1
+            // Using an associative array of items and prices
+            var menu = {
+                "hotdog": 4,
+                "fries": 3.50,
+                "soda": 1.50,
+                "sauerkraut": 1
+            };
+        
+            // Using a JSON object 
+            var menuJSON = {
+                "items": [
+                    {"name": "hotdog", "price": 4},
+                    {"name": "fries", "price": 3.50},
+                    {"name": "soda", "price": 1.50},
+                    {"name": "sauerkraut", "price": 1}
+                ]
+            };
+        
+            // Using a function object 
+            function MenuItem(name, price) {
+                this.name = name;
+                this.price = price;
+            }
+        
+            var menuItems = [
+                new MenuItem("hotdog", 4),
+                new MenuItem("fries", 3.50),
+                new MenuItem("soda", 1.50),
+                new MenuItem("sauerkraut", 1)
+            ];
+        
+        
+        // Part 2
+            // Function to display menu using JSON object
+            function displayMenuJSON(menuJSON) {
+                document.write("<h2>Menu</h2>");
+                document.write("<ul>");
+                for (var i = 0; i < menuJSON.items.length; i++) {
+                    document.write("<li>" + menuJSON.items[i].name + ": $" + menuJSON.items[i].price.toFixed(2) + "</li>");
+                }
+                document.write("</ul>");
+            }
+        
+            // Call display functions
+            displayMenuJSON(menuJSON);
+        </script>
+    
+    <!-- Text input for item name and Add to Cart button -->
+    <div id="order">
+        <input type="text" id="item-name" placeholder="Enter item name">
+        <button onclick="addToCart()">Add to Cart</button>
+    </div>
+    
+    <div id="cart">
+        <!-- Shopping cart area -->
+        <h2>Shopping Cart</h2>
+        <ul id="cart-list">
+            <!-- Cart items will be dynamically added here -->
+        </ul>
+        <!-- Checkout button -->
+        <button onclick="checkout()">Checkout</button>
+    </div>
+
+    <script>
+// Part 3
+    // Initialize an associative array for the cart
+    var cart = {
+            "hotdog": 0,
+            "fries": 0,
+            "soda": 0,
+            "sauerkraut": 0
+        };
+
+    // Function to add item to cart
+    function addToCart() {
+        var itemName = document.getElementById("item-name").value.toLowerCase();
+        if (cart.hasOwnProperty(itemName)) {
+            cart[itemName] += 1;
+            displayCart(); // Update cart display
+            alert("Added " + itemName + " to cart!");
+        } else {
+            alert("Invalid item name!");
+        }
+    }
+
+
+// Part 4
+    // Function to display items in the cart
+    function displayCart() {
+        var cartList = document.getElementById("cart-list");
+        cartList.innerHTML = ""; // Clear previous cart items
+
+        for (var item in cart) {
+            if (cart[item] > 0) {
+                var listItem = document.createElement("li");
+                listItem.textContent = item + ": " + cart[item];
+                cartList.appendChild(listItem);
+            }
+        }
+    }
+
+
+// Part 5
+    // Function to proceed to checkout
+    function checkout() {
+        var totalCost = 0;
+        var orderDetails = "Checkout Details:\n";
+        
+        // Calculate total cost and gather order details
+        for (var item in cart) {
+            if (cart[item] > 0) {
+                var itemTotal = cart[item] * menu[item];
+                totalCost += itemTotal;
+                orderDetails += item + ": " + cart[item] + " x $" + menu[item].toFixed(2) + " = $" + itemTotal.toFixed(2) + "\n";
+            }
+        }
+        
+        // Display total cost and order details
+        orderDetails += "\nTotal Order Cost: $" + totalCost.toFixed(2);
+        alert(orderDetails);
+        
+        // Clear the cart and reset quantities to 0
+        clearCart();
+    }
+
+    // Function to clear the cart and reset quantities to 0
+    function clearCart() {
+        for (var item in cart) {
+            cart[item] = 0;
+        }
+        
+        // Update cart display
+        displayCart(); 
+    }
+
+    </script>
+</body>
+</html>
