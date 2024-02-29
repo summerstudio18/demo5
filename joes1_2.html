@@ -6,6 +6,7 @@
     <title>Joe's Hotdogs</title>
 </head>
 <body>
+
     <script>
 // Part 1
     // Using an associative array of items and prices
@@ -44,7 +45,7 @@
 
     // Function to display menu using JSON object
     function displayMenuJSON(menuJSON) {
-        document.write("<h2>Menu</h2>");
+        document.write("<h2>Menu using JSON object</h2>");
         document.write("<ul>");
         for (var i = 0; i < menuJSON.items.length; i++) {
             document.write("<li>" + menuJSON.items[i].name + ": $" + menuJSON.items[i].price.toFixed(2) + "</li>");
@@ -52,11 +53,12 @@
         document.write("</ul>");
     }
 
+ 
 
 
     // Function to display menu using array of objects
     function displayMenuItems(menuItems) {
-        document.write("<h2>Menu</h2>");
+        document.write("<h2>Menu using array of objects</h2>");
         document.write("<ul>");
         for (var i = 0; i < menuItems.length; i++) {
             document.write("<li>" + menuItems[i].name + ": $" + menuItems[i].price.toFixed(2) + "</li>");
@@ -64,7 +66,9 @@
         document.write("</ul>");
     }
 
-
+    // Call display functions
+    displayMenuJSON(menuJSON);
+    displayMenuItems(menuItems);
 
     </script>
 </body>
