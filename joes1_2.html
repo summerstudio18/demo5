@@ -1,1 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joe's Hotdogs</title>
+</head>
+<body>
+    <script>
+// Part 1
+    // Using an associative array of items and prices
+    var menu = {
+        "hotdog": 4,
+        "fries": 3.50,
+        "soda": 1.50,
+        "sauerkraut": 1
+    };
 
+    // Using a JSON object 
+    var menuJSON = {
+        "items": [
+            {"name": "hotdog", "price": 4},
+            {"name": "fries", "price": 3.50},
+            {"name": "soda", "price": 1.50},
+            {"name": "sauerkraut", "price": 1}
+        ]
+    };
+
+    // Using a function object 
+    function MenuItem(name, price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    var menuItems = [
+        new MenuItem("hotdog", 4),
+        new MenuItem("fries", 3.50),
+        new MenuItem("soda", 1.50),
+        new MenuItem("sauerkraut", 1)
+    ];
+
+
+// Part 2
+
+    // Function to display menu using JSON object
+    function displayMenuJSON(menuJSON) {
+        document.write("<h2>Menu</h2>");
+        document.write("<ul>");
+        for (var i = 0; i < menuJSON.items.length; i++) {
+            document.write("<li>" + menuJSON.items[i].name + ": $" + menuJSON.items[i].price.toFixed(2) + "</li>");
+        }
+        document.write("</ul>");
+    }
+
+
+
+    // Function to display menu using array of objects
+    function displayMenuItems(menuItems) {
+        document.write("<h2>Menu</h2>");
+        document.write("<ul>");
+        for (var i = 0; i < menuItems.length; i++) {
+            document.write("<li>" + menuItems[i].name + ": $" + menuItems[i].price.toFixed(2) + "</li>");
+        }
+        document.write("</ul>");
+    }
+
+
+
+    </script>
+</body>
+</html>
